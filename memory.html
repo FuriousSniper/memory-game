@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8" />
+
+<head>
+    <title>MEMORY</title>
+
+    <style>
+        * {
+            margin: 0;
+            -moz-user-select: -moz-none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        #grid {
+            width: 400px;
+            position: absolute;
+            left: 40.3%;
+            margin: 0 auto;
+            font-size: 0px;
+            background: url("0.jpg");
+            z-index: 10;
+        }
+
+        #tabela {
+            width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h3 {
+            text-align: center;
+            color: yellow;
+            background-color: black;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+        }
+
+        #wygrana {
+            background-color: rgba(42, 42, 42, 0.7);
+            width: 600px;
+            height: 500px;
+            position: absolute;
+            left: 35.2%;
+            margin: 0 auto;
+            display: none;
+            z-index: 500000;
+        }
+
+        #winnn {
+            width: 365px;
+            height: 400px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #przegrana {
+            background-color: rgba(42, 42, 42, 0.7);
+            width: 600px;
+            height: 500px;
+            position: absolute;
+            left: 35.2%;
+            margin: 0 auto;
+            display: none;
+            z-index: 500000;
+        }
+
+        #loss {
+            width: 365px;
+            height: 195px;
+            background-color: rgba(255,0,0,0.7);
+            display: block;
+            margin: 0 auto;
+            text-align:center;
+            padding-top:205px;
+            font-weight:200;
+        }
+
+        #bt1 {
+            width: 200px;
+        }
+
+        #bt2 {
+            width: 200px;
+        }
+
+        #center {
+            width: 200px;
+            margin: 0 auto;
+        }
+
+        #center2 {
+            width: 200px;
+            margin: 0 auto;
+        }
+
+        #mapa {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            left: 40.3%;
+            z-index: 1000;
+            display: block;
+        }
+
+        #ebe {
+            width: 400px;
+            height: 400px;
+        }
+
+        #czasomierz {
+            position: relative;
+            left: 40.3%;
+            width: 400px;
+            height: 40px;
+            background-color: white;
+            border: 2px solid black;
+            overflow: hidden;
+        }
+
+        #pasek {
+            position: absolute;
+            width: 400px;
+            height: 40px;
+            background-color: lightslategrey;
+        }
+
+        h6 {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        #nick {
+            margin: 0 auto;
+            width: 200px;
+            position: relative;
+            left: 77px;
+            top: 100px;
+        }
+
+        #submit {
+            margin: 0 auto;
+            position: relative;
+            top: 115px;
+            left: 129px;
+            width: 100px;
+        }
+
+        #scoreboard {
+            position: absolute;
+            display:none;
+            left: 40.3%;
+            height: 500px;
+            width: 404px;
+            z-index: 6000;
+            background-color: rgb(42, 42, 42);
+        }
+
+        #close {
+            width: 200px;
+            position: absolute;
+            top: 466px;
+            left: 99px;
+        }
+
+        #scores {
+            width: 97.5%;
+            height: 85%;
+            padding: 5px;
+            overflow-y: auto;
+        }
+
+        .score {
+            width: 90%;
+            height: 40px;
+            text-align: left;
+            padding-left: 20px;
+            color: white;
+        }
+
+        #sc {
+            width: 200px;
+            position: absolute;
+            top: 518px;
+            left: 873px;
+        }
+    </style>
+
+</head>
+
+<body id="body">
+    <div id="scoreboard">
+        <div id="scores">
+        </div>
+        <button id="close">Close</button>
+    </div>
+    <div id="wygrana">
+        <div id="winnn">
+            <input type="text" name="nick" id="nick" maxlength="10" />
+            <br>
+        </div>
+        <br>
+        <h3>Do you want to restart?</h3>
+        <br>
+        <div id="center"><button id="bt1">Restart</button></div>
+    </div>
+    <div id="przegrana">
+        <div id="loss">Game over!</div>
+        <br>
+        <h3>Do you want to restart?</h3>
+        <br>
+        <div id="center2"><button id="bt2">Restart</button></div>
+    </div>
+    <h1 id="header">MEMORY</h1>
+    <div id="czasomierz">
+        <canvas id="canvas" width="400" height="40"></canvas>
+    </div>
+    <br>
+    <div id="mapa">
+        <img src="czolowa.png" alt="" usemap="#Map" id="ebe" />
+        <map name="Map" id="Map">
+            <area alt="" title="" href="#" shape="poly" coords="42,39,338,64,68,153" id="s30" />
+            <area alt="" title="" href="#" shape="poly" coords="79,219,341,110,364,236" id="s60" />
+            <area alt="" title="" href="#" shape="poly" coords="95,270,114,381,372,298" id="s90" />
+        </map>
+    </div>
+    <div id="grid">
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+        <img src="" alt="" draggable="false" />
+    </div>
+    <br>
+    <button id="sc">Show scores</button>
+    <script>
+        let imgs = document.images;
+        let tab = []; //tablica posortowanych
+        var checkedArr = []; //tablica do sprawdzania 2 obrazkow
+        let checked = true;
+        let timeSelected = null;
+        var counter = 0; //licznik sparowanych pol
+        var bt1 = document.getElementById("bt1");
+        var bt2 = document.getElementById("bt2");
+        var pasek = document.getElementById("pasek")
+        var s30 = document.getElementById("s30");
+        var s60 = document.getElementById("s60");
+        var s90 = document.getElementById("s90");
+        var ctd;
+        var header = document.getElementById("header")
+        var map = document.getElementById("mapa");
+        var results = []
+		var timeScore=0
+        //obsluga wyboru trybu (czasu)
+        s30.addEventListener("click", function () {
+            map.style.display = "none"
+            document.getElementById("scoreboard").style.display="none"
+            document.getElementById("sc").style.display="none"
+            timeSelected = 30;
+            countdown(30);
+        })
+
+        s60.addEventListener("click", function () {
+            map.style.display = "none"
+            document.getElementById("scoreboard").style.display="none"
+            document.getElementById("sc").style.display="none"
+            timeSelected = 60;
+            countdown(60)
+        })
+
+        s90.addEventListener("click", function () {
+            map.style.display = "none"
+            document.getElementById("scoreboard").style.display="none"
+            document.getElementById("sc").style.display="none"
+            timeSelected = 90;
+            countdown(90)
+        })
+        document.getElementById("close").addEventListener("click", function () {
+            document.getElementById("scoreboard").style.display = "none"
+            document.getElementById("sc").style.display="block"
+			results=[]
+        })
+        document.getElementById("sc").addEventListener("click", function () {
+            document.getElementById("sc").style.display="none"
+            document.getElementById("scoreboard").style.display = "block"
+            getResults()
+        })
+        //sprawdzanie wygranej i reset gry
+        function winning(z) {
+            if (z >= 8) {
+                document.getElementById("sc").style.display="block"
+                var button = document.createElement("button")
+                button.id = "submit"
+                button.innerHTML = "zapisz"
+                document.getElementById("nick").placeholder = "Type nick there..."
+                document.getElementById("nick").value = ""
+                button.addEventListener("click", function () {
+                    var nick = document.getElementById("nick").value
+                    var element = document.getElementById("submit")
+					var score=timeSelected-(timeSelected-timeScore)
+                    element.parentNode.removeChild(element);
+					if(timeSelected==90){
+						score*=1
+					}
+					if(timeSelected==60){
+						score*=4
+					}
+					if(timeSelected==30){
+						score*=16
+					}
+                    saveResults(nick, score)
+                    document.getElementById("wygrana").style.display = "none"
+                    header.innerHTML = "MEMORY"
+                    counter = 0;
+                    map.style.display = "block"
+                    restart();
+                    getResults()
+                })
+                document.getElementById("winnn").appendChild(button)
+                document.getElementById("wygrana").style.display = "block"
+                clearInterval(ctd);
+                bt1.addEventListener("click", function () {
+                    document.getElementById("wygrana").style.display = "none"
+                    header.innerHTML = "MEMORY"
+                    counter = 0;
+                    map.style.display = "block"
+                    restart();
+                })
+            }
+        }
+        //resetowanie/startowanie gry
+        function restart() {
+            var pathArr = ["1.jpg", "1.jpg", "2.jpg", "2.jpg", "3.jpg", "3.jpg", "4.jpg", "4.jpg", "5.jpg", "5.jpg", "6.jpg", "6.jpg", "7.jpg", "7.jpg", "8.jpg", "8.jpg"]
+            for (var i = 0; i < 16; i++) {
+
+                var z = pathArr.length;
+                var x = Math.floor(Math.random() * z);
+                tab.push(pathArr.splice(x, 1)[0]);
+
+                imgs[i + 1].style.opacity = 0;
+                imgs[i + 1].src = tab[i]
+            }
+            for (var i = 0; i < 16; i++) {
+
+                imgs[i + 1].addEventListener("click", function click(e) {
+                    if (checked && e.target.style.opacity != 1) {
+                        e.target.style.opacity = 1;
+                        checkedArr.push(e.target)
+                    }
+                   // console.log(checkedArr)
+                });
+            }
+            timeSelected = null;
+            clearInterval(ctd);
+            var canvas = document.getElementById("canvas")
+            var ctx = canvas.getContext("2d")
+            ctx.beginPath();
+            ctx.rect(0, 0, 400, 40)
+            ctx.fillStyle = "white"
+            ctx.fill()
+
+
+        }
+        restart();
+        //sprawdzanie par
+        document.getElementById("grid").addEventListener("click", function (e) {
+            if (checkedArr.length == 2) {
+                if (checkedArr[0].currentSrc != checkedArr[1].currentSrc && checked) { //wlasciwosc currentSrc sprawdza sciezke obrazka, bez tego petla if nie dzialala
+                    checked = false;
+                    setTimeout(function () {
+                        checkedArr[0].style.opacity = 0;
+                        checkedArr[1].style.opacity = 0;
+                        checkedArr = [];
+                        checked = true;
+                    }, 500)
+                }
+                else {
+                    checked = false;
+                    setTimeout(function () {
+                        checkedArr[0].style.opacity = 1;
+                        checkedArr[1].style.opacity = 1;
+                        checkedArr = [];
+                        checked = true;
+                        counter++;
+                        winning(counter)
+                        //  console.log("counter: " + counter)
+                    }, 500)
+                }
+            }
+        });
+        // console.log(tab)
+        function countdown(time) {
+            document.getElementById("header").innerHTML = "MEMORY [" + time + "s]"
+            ctd = setInterval(function () {
+                time--
+				timeScore=time
+                if (timeSelected / time <= 3)
+                    countBar(timeSelected, time, "green");
+                else
+                    countBar(timeSelected, time, "red");
+                document.getElementById("header").innerHTML = "MEMORY [" + time + "s]"
+                // console.log(time)
+                if (time <= 0) {
+                    clearInterval(ctd)
+                    //  console.log("KONIEC")
+                    losing()
+                }
+            }, 1000)
+        }
+        function losing() {
+            document.getElementById("przegrana").style.display = "block"
+            clearInterval(ctd);
+            document.getElementById("sc").style.display="block"
+            bt2.addEventListener("click", function () {
+                document.getElementById("przegrana").style.display = "none"
+                header.innerHTML = "MEMORY"
+                counter = 0;
+                map.style.display = "block"
+                restart();
+            })
+        }
+        function countBar(timeSelected, time, color) {
+            var canvas = document.getElementById("canvas")
+            var ctx = canvas.getContext("2d")
+            var width = canvas.width;
+            var segment = width / timeSelected
+            var end = segment * time
+            ctx.beginPath();
+            ctx.rect(0, 0, 400, 40)
+            ctx.fillStyle = "white"
+            ctx.fill()
+
+            ctx.beginPath();
+            ctx.rect(0, 0, end, 40)
+            ctx.fillStyle = color
+            ctx.fill()
+        }
+        function saveResults(nick, score) {
+            // console.log(nick, score);
+            var d = new Date();
+            d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            var obj = JSON.stringify({ "nick": nick, "score": score })
+            var number = Math.floor((Math.random() * 615) + 1)
+            document.cookie = number + "=" + obj + ";" + expires + ";path=/;";
+        }
+        function getResults() {
+            if (document.cookie != "") {
+                var myNode = document.getElementById("scores");
+                while (myNode.firstChild) {
+                    myNode.removeChild(myNode.firstChild);
+                }
+                myNode.style.display="block"
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var score = ca[i].split('=');
+                    var wynik = JSON.parse(score[1])
+					results.push(wynik)
+                }
+				results.sort((a, b) => (a.score > b.score) ? -1 : 1)
+				for(var i=0;i<results.length;i++){
+					var s = document.createElement("div")
+                    var place=i+1
+                    s.classList.add("score")
+                    s.innerHTML = place + ". " + results[i].nick + ", score: " + results[i].score
+                    document.getElementById("scores").appendChild(s)
+				}
+            }
+			results=[]
+        }
+		function dynamicSort(property) {
+			var sortOrder = 1;
+
+			if(property[0] === "-") {
+				sortOrder = -1;
+				property = property.substr(1);
+			}
+
+			return function (a,b) {
+				if(sortOrder == -1){
+					return b[property].localeCompare(a[property]);
+				}else{
+					return a[property].localeCompare(b[property]);
+				}        
+			}
+		}
+    </script>
+</body>
+
+</html>
